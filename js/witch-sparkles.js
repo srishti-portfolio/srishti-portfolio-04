@@ -3,6 +3,8 @@
    1. A silver + burgundy spark trail follows the witch cursor.
    2. Wherever a visitor clicks, golden sparkles swirl out
       of the little witch on the cursor like a magic spell.
+   3. On phones and tablets (no cursor), the witch appears
+      above the finger wherever the screen is touched.
    ========================================================= */
 (function () {
   "use strict";
@@ -181,26 +183,100 @@
     }
   }
 
-  document.addEventListener("pointermove", function (e) {
-    if (reduceMotion || e.pointerType === "touch") return;
+  // Add one spark at (x, y), screen position of the end of the broom.
+  function addSpark(x, y) {
+    if (reduceMotion) return;
     var now = performance.now();
     if (now - lastSpark < TRAIL_GAP) return;
     lastSpark = now;
     if (trail.length >= TRAIL_MAX) {
       trail.shift().el.remove();
     }
-    trail.push(makeTrailSpark(e.clientX + BROOM_END_X, e.clientY + BROOM_END_Y));
+    trail.push(makeTrailSpark(x, y));
     if (!trailRunning) {
       trailRunning = true;
       requestAnimationFrame(runTrail);
     }
+  }
+
+  // Mouse: the trail comes off the broom of the witch cursor.
+  document.addEventListener("pointermove", function (e) {
+    if (e.pointerType === "touch") return; // phones are handled below
+    addSpark(e.clientX + BROOM_END_X, e.clientY + BROOM_END_Y);
   }, { passive: true });
+
+  /* ---------- Phones and tablets: the witch appears where you touch ----------
+     There is no mouse cursor on a touchscreen, so the witch pops up just above
+     the finger (so the finger doesn't hide her), follows it while swiping,
+     leaves the spark trail, and fades away when the finger lifts. */
+  var TOUCH_WITCH_W = 56, TOUCH_WITCH_H = 46;   // same size as the cursor
+  var TOUCH_LIFT = 58;                           // how far above the finger she flies
+  var touchWitch = null, hideTimer = null;
+  var lastTouch = { x: 0, y: 0, time: 0 };
+
+  var touchCss = document.createElement("style");
+  touchCss.textContent =
+    ".touch-witch{position:fixed;left:0;top:0;width:" + TOUCH_WITCH_W + "px;height:" + TOUCH_WITCH_H + "px;" +
+    "pointer-events:none;z-index:99998;opacity:0;transition:opacity .35s ease;will-change:transform,opacity;}" +
+    ".touch-witch.show{opacity:1;}" +
+    ".touch-witch img{width:100%;height:100%;display:block;transform-origin:50% 80%;}" +
+    ".touch-witch.show img{animation:touch-witch-pop .35s ease-out, touch-witch-bob 1.6s ease-in-out .35s infinite;}" +
+    "@keyframes touch-witch-pop{from{transform:scale(.4) rotate(-12deg);}to{transform:scale(1) rotate(0);}}" +
+    "@keyframes touch-witch-bob{50%{transform:translateY(-4px) rotate(-3deg);}}" +
+    "@media (prefers-reduced-motion: reduce){.touch-witch.show img{animation:none;}}";
+  document.head.appendChild(touchCss);
+
+  // Top-left corner of the witch picture for a finger at (x, y).
+  function witchBox(x, y) {
+    return { left: x - TOUCH_WITCH_W / 2, top: y - TOUCH_LIFT - TOUCH_WITCH_H / 2 };
+  }
+
+  function placeWitch(x, y) {
+    if (!touchWitch) {
+      touchWitch = document.createElement("div");
+      touchWitch.className = "touch-witch";
+      touchWitch.setAttribute("aria-hidden", "true");
+      touchWitch.innerHTML = '<img src="images/witch-cursor.svg" alt="">';
+      document.body.appendChild(touchWitch);
+    }
+    var b = witchBox(x, y);
+    touchWitch.style.transform = "translate(" + b.left + "px," + b.top + "px)";
+    clearTimeout(hideTimer);
+    touchWitch.classList.add("show");
+    lastTouch = { x: x, y: y, time: Date.now() };
+    // spark trail from the end of her broom (49, 34 inside the picture)
+    addSpark(b.left + 49, b.top + 34);
+  }
+
+  document.addEventListener("touchstart", function (e) {
+    var t = e.touches[0];
+    if (t) placeWitch(t.clientX, t.clientY);
+  }, { passive: true });
+
+  document.addEventListener("touchmove", function (e) {
+    var t = e.touches[0];
+    if (t) placeWitch(t.clientX, t.clientY);
+  }, { passive: true });
+
+  function fadeWitch() {
+    if (!touchWitch) return;
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(function () { touchWitch.classList.remove("show"); }, 700);
+  }
+  document.addEventListener("touchend", fadeWitch, { passive: true });
+  document.addEventListener("touchcancel", fadeWitch, { passive: true });
 
   /* ---------- Golden sparkles on every click, anywhere on the page ---------- */
   document.addEventListener("click", function (e) {
     // Keyboard "clicks" (Enter on a link) have no mouse position, so skip the sparkles there.
     if (e.detail === 0 && e.clientX === 0 && e.clientY === 0) return;
-    burst(e.clientX, e.clientY);
+    if (Date.now() - lastTouch.time < 1000) {
+      // A tap on a phone: the sparkles come out of the witch above the finger.
+      var b = witchBox(lastTouch.x, lastTouch.y);
+      burst(b.left + 3, b.top + 17);
+    } else {
+      burst(e.clientX, e.clientY);
+    }
 
     // Links that leave the page would navigate before anyone sees the
     // sparkles, so wait a moment before following them.
