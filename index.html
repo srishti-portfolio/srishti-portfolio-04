@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Srishti Portfolio</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Every time the site opens: hide the hero lines until the typing animation starts (see js/site.js) -->
+    <script>
+      (function () {
+        try {
+          var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          if (!reduce) {
+            var root = document.documentElement;
+            root.classList.add("type-intro");
+            // Safety net: never keep the text hidden for long if a script fails to load.
+            setTimeout(function () { root.classList.remove("type-intro"); }, 6000);
+          }
+        } catch (e) {}
+      })(); 
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+ 
+
+
+    <style>
+
+      /*======================================
+      //--//-->   PHONE MENU ICON (three lines, drawn with CSS)
+      ======================================*/
+      .menu-icon {
+        position: relative;
+        display: inline-block;
+        width: 20px;
+        height: 2px;
+        margin-right: 6px;
+        vertical-align: middle;
+        background: currentColor;
+        border-radius: 2px;
+      }
+      .menu-icon::before,
+      .menu-icon::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 20px;
+        height: 2px;
+        background: currentColor;
+        border-radius: 2px;
+      }
+      .menu-icon::before { top: -6px; }
+      .menu-icon::after { top: 6px; }
+
+      /*======================================
+      //--//-->   ABOUT
+      ======================================*/
+
+      .about-mf .box-shadow-full {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+      }
+
+      .about-mf .about-img {
+        margin-bottom: 2rem;
+      }
+
+      .about-mf .about-img img {
+        margin-left: 10px;
+      }
+
+
+      .skill-mf .progress {
+        /* background-color: #cde1f8; */
+        margin: .5rem 0 1.2rem 0;
+        border-radius: 0;
+        height: .7rem;
+      }
+
+      .skill-mf .progress .progress-bar {
+        height: .7rem;
+        background-color: var(--burgundy);
+      }
+
+
+      /*======================================
+      //--//-->   HOME (photo on the left)
+      ======================================*/
+      .hero-simple {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 120px 0 60px;
+        background: linear-gradient(135deg, var(--cream) 55%, var(--pink-light) 100%);
+      }
+      .hero-photo {
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto;
+        border: 6px solid var(--dusty-pink);
+        box-shadow: 0 0 0 10px var(--cream), 0 0 0 12px var(--burgundy);
+      }
+      .hero-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 30%;
+      }
+      .hero-simple .subheading {
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--burgundy);
+      }
+      .hero-simple h1 {
+        font-size: 56px;
+        font-weight: 800;
+        color: var(--text-dark);
+        line-height: 1.2;
+      }
+      .hero-simple h1 span { color: var(--burgundy); }
+      .hero-simple h2 {
+        font-size: 30px;
+        font-weight: 400;
+        color: var(--text-dark);
+      }
+      @media (max-width: 767.98px) {
+        .hero-photo { width: 200px; height: 200px; margin-bottom: 30px; }
+        .hero-simple h1 { font-size: 38px; }
+        .hero-simple h2 { font-size: 24px; }
+      }
+
+
+      /* Typing animation (first visit only) */
+      .type-intro #hero-title,
+      .type-intro #hero-role { visibility: hidden; }
+      .typing-caret {
+        display: inline-block;
+        width: 3px;
+        height: 0.9em;
+        margin-left: 4px;
+        vertical-align: -0.05em;
+        background: var(--burgundy);
+        animation: caret-blink 0.8s steps(1) infinite;
+      }
+      @keyframes caret-blink { 50% { opacity: 0; } }
+
+
+      /*======================================
+      //--//-->   SKILLS (flip cards)
+      //  Front = heading, back = list of skills.
+      //  Flips only when clicked / tapped (or Enter on the keyboard).
+      ======================================*/
+      .flip-card {
+        width: 100%;
+        perspective: 1200px;
+        margin-bottom: 30px;
+        outline: none;
+      }
+      .flip-inner {
+        display: grid;            /* both faces share one cell, so the card is as tall as the bigger face */
+        height: 100%;
+        transition: transform 0.7s cubic-bezier(.4, .2, .2, 1);
+        transform-style: preserve-3d;
+      }
+      .flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+      .flip-card:hover .flip-face { box-shadow: 0 16px 30px -12px rgba(114, 47, 55, 0.55); }
+      .flip-card:focus-visible .flip-face { box-shadow: 0 0 0 3px var(--dusty-pink); }
+      .flip-face {
+        grid-area: 1 / 1;
+        border-radius: 12px;
+        padding: 28px 24px 44px;
+        min-height: 210px;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        position: relative;
+        transition: box-shadow 0.3s ease;
+      }
+      .flip-front {
+        background: var(--burgundy);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        box-shadow: 0 10px 25px -12px rgba(114, 47, 55, 0.6);
+      }
+      .flip-front h3 {
+        color: var(--cream);
+        font-size: 26px;
+        font-weight: 700;
+        margin: 0;
+      }
+      .flip-front .flip-star { color: #F2C94C; font-size: 22px; margin-bottom: 10px; }
+      .flip-front .flip-hint { color: var(--cream); }
+      .flip-back {
+        transform: rotateY(180deg);
+        background: var(--pink-light);
+        border-top: 4px solid var(--burgundy);
+        box-shadow: 0 10px 25px -12px rgba(114, 47, 55, 0.35);
+      }
+      .skill-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+      .skill-chip {
+        background: var(--cream);
+        color: var(--text-dark);
+        border: 1px solid rgba(114, 47, 55, 0.25);
+        border-radius: 20px;
+        padding: 4px 12px;
+        font-size: 13.5px;
+        line-height: 1.5;
+      }
+      .flip-hint {
+        position: absolute;
+        right: 16px;
+        bottom: 12px;
+        font-size: 12px;
+        letter-spacing: 1px;
+        color: var(--burgundy);
+        opacity: 0.8;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .flip-inner { transition: none; }
+      }
+
+
+      /*======================================
+      //--//-->   "HAVE A QUESTION?" POPUP FORM
+      ======================================*/
+      .qmodal {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+      }
+      .qmodal[hidden] { display: none; }
+      .qmodal-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(62, 31, 36, 0.6);
+        animation: qfade 0.25s ease;
+      }
+      .qmodal-box {
+        position: relative;
+        width: 100%;
+        max-width: 520px;
+        max-height: calc(100vh - 32px);
+        overflow-y: auto;
+        background: var(--cream);
+        border-top: 5px solid var(--burgundy);
+        border-radius: 14px;
+        padding: 32px 28px 28px;
+        box-shadow: 0 25px 60px -15px rgba(62, 31, 36, 0.6);
+        animation: qpop 0.3s cubic-bezier(.2, .9, .3, 1.2);
+      }
+      .qmodal-box h3 { color: var(--text-dark); font-weight: 700; font-size: 26px; margin-bottom: 20px; }
+      .qmodal-box h3 span { color: var(--burgundy); }
+      .qmodal-close {
+        position: absolute;
+        top: 10px;
+        right: 14px;
+        background: none;
+        border: none;
+        font-size: 30px;
+        line-height: 1;
+        color: var(--burgundy);
+        padding: 4px 8px;
+      }
+      .qmodal-box label {
+        display: block;
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--text-dark);
+        margin-bottom: 6px;
+      }
+      .qmodal-box input[type="text"],
+      .qmodal-box input[type="email"],
+      .qmodal-box textarea {
+        display: block;
+        width: 100%;
+        background: #fff;
+        color: var(--text-dark);
+        border: 1px solid rgba(114, 47, 55, 0.3);
+        border-radius: 8px;
+        padding: 10px 14px;
+        font-size: 15px;
+        font-family: inherit;
+        margin-bottom: 18px;
+        resize: vertical;
+      }
+      .qmodal-box input[type="text"]:focus,
+      .qmodal-box input[type="email"]:focus,
+      .qmodal-box textarea:focus {
+        outline: none;
+        border-color: var(--burgundy);
+        box-shadow: 0 0 0 3px rgba(215, 167, 177, 0.6);
+      }
+      .qmodal-box label .qmodal-note { font-weight: 400; color: var(--text-muted); }
+      .qmodal-box .qmodal-honey { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+      .qmodal-status { min-height: 1.5em; font-size: 14px; margin-bottom: 12px; color: var(--text-muted); }
+      .qmodal-status.ok { color: #2E7D4F; font-weight: 600; }
+      .qmodal-status.err { color: var(--burgundy); font-weight: 600; }
+      .qmodal-box button[type="submit"][disabled] { opacity: 0.6; }
+      @keyframes qfade { from { opacity: 0; } }
+      @keyframes qpop { from { opacity: 0; transform: translateY(20px) scale(0.96); } }
+      @media (prefers-reduced-motion: reduce) {
+        .qmodal-backdrop, .qmodal-box { animation: none; }
+      }
+
+
+      /*======================================
+      //--//-->   CERTIFICATIONS
+      ======================================*/
+      .cert-card {
+        background: var(--pink-light);
+        border-left: 4px solid var(--burgundy);
+        border-radius: 10px;
+        padding: 24px 22px;
+        margin-bottom: 30px;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+      .cert-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 14px 28px -14px rgba(114, 47, 55, 0.5);
+      }
+      .cert-card .cert-icon { color: #D4A017; font-size: 20px; display: block; margin-bottom: 8px; }
+      .cert-card h3 { font-size: 18px; font-weight: 600; color: var(--text-dark); line-height: 1.4; margin-bottom: 8px; }
+      .cert-card h3 a { color: inherit; }
+      .cert-card h3 a:hover { color: var(--burgundy); }
+      .cert-card .cert-issuer {
+        font-size: 12px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--burgundy);
+        font-weight: 600;
+      }
+
+
+      /*======================================
+      //--//-->   PROJECTS: magic pumpkin portal
+      ======================================*/
+      .pumpkin-portal {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none !important;
+        padding: 10px 20px 20px;
+      }
+      .pumpkin-svg {
+        width: 240px;
+        max-width: 70vw;
+        height: auto;
+        overflow: visible;
+        animation: pk-float 3.2s ease-in-out infinite;
+        transition: filter 0.3s ease;
+      }
+      .pumpkin-portal:hover .pumpkin-svg,
+      .pumpkin-portal:focus-visible .pumpkin-svg {
+        filter: drop-shadow(0 0 18px rgba(242, 201, 76, 0.55));
+      }
+      .pk-star { fill: #F2C94C; transform-box: fill-box; transform-origin: center; animation: pk-twinkle 2s ease-in-out infinite; }
+      .pk-star.s2 { animation-delay: .5s; }
+      .pk-star.s3 { animation-delay: 1s; }
+      .pk-star.s4 { animation-delay: 1.5s; }
+      .pumpkin-label {
+        margin-top: 14px;
+        font-size: 26px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        color: var(--burgundy); /* fallback for very old browsers */
+        background: linear-gradient(90deg, var(--burgundy) 0%, #B8862B 35%, #E8B84A 50%, #B8862B 65%, var(--burgundy) 100%);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: pk-shimmer 4s linear infinite;
+      }
+      @keyframes pk-shimmer { to { background-position: -200% center; } }
+      .pumpkin-hint {
+        margin-top: 4px;
+        font-size: 13px;
+        letter-spacing: 1px;
+        color: var(--text-muted);
+      }
+      /* while the spell is being cast */
+      .pumpkin-portal.is-casting .pumpkin-svg {
+        animation: pk-cast 0.65s ease-in-out forwards;
+        filter: drop-shadow(0 0 28px rgba(242, 201, 76, 0.9));
+      }
+      @keyframes pk-float { 50% { transform: translateY(-8px); } }
+      @keyframes pk-twinkle { 50% { transform: scale(0.4); opacity: 0.4; } }
+      @keyframes pk-cast {
+        0% { transform: scale(1) rotate(0); }
+        20% { transform: scale(1.05) rotate(-6deg); }
+        40% { transform: scale(1.08) rotate(6deg); }
+        60% { transform: scale(1.1) rotate(-4deg); }
+        100% { transform: scale(1.18) rotate(0); }
+      }
+      .portal-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 100000;
+        background: radial-gradient(circle at center, #8E3B45 0%, #722F37 45%, #3E1F24 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: clip-path 0.75s cubic-bezier(.6, 0, .3, 1);
+      }
+      .portal-overlay span {
+        color: #F2C94C;
+        font-size: 64px;
+        text-shadow: 0 0 20px rgba(242, 201, 76, 0.9);
+        animation: pk-twinkle 0.8s ease-in-out infinite;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .pumpkin-svg, .pk-star, .pumpkin-label { animation: none; }
+      }
+
+
+      /*======================================
+      //--//-->   PROJECTS MENU DROPDOWN
+      ======================================*/
+      .has-dropdown { position: relative; }
+      .nav-caret {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        margin-left: 6px;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: translateY(-3px) rotate(45deg);
+        transition: transform 0.25s ease;
+        opacity: 0.8;
+      }
+      .has-dropdown:hover .nav-caret,
+      .has-dropdown:has(:focus-visible) .nav-caret { transform: translateY(1px) rotate(-135deg); }
+      .has-dropdown.dd-closed .nav-caret { transform: translateY(-3px) rotate(45deg); }
+      .nav-dropdown { list-style: none; margin: 0; }
+      .nav-dropdown a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        border-radius: 8px;
+        color: var(--text-dark);
+        font-size: 15px;
+        font-weight: 500;
+        white-space: nowrap;
+        transition: background 0.2s ease, color 0.2s ease, box-shadow 0.3s ease;
+      }
+      .nav-dropdown a:hover,
+      .nav-dropdown a:focus-visible { background: var(--pink-light); color: var(--burgundy); }
+      .nav-dropdown .nd-star { color: #D4A017; transition: transform 0.4s ease; }
+      .nav-dropdown a:hover .nd-star { transform: rotate(180deg) scale(1.2); }
+      .nav-dropdown a.is-casting {
+        background: var(--burgundy);
+        color: var(--cream);
+        box-shadow: 0 0 18px rgba(242, 201, 76, 0.8);
+      }
+      .nav-dropdown a.is-casting .nd-star { color: #F2C94C; animation: pk-twinkle 0.5s ease-in-out infinite; }
+
+      /* laptops and bigger: opens below "Projects" when hovered */
+      @media (min-width: 992px) {
+        .nav-dropdown {
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          min-width: 200px;
+          padding: 8px;
+          background: var(--cream);
+          border-top: 3px solid var(--burgundy);
+          border-radius: 10px;
+          box-shadow: 0 18px 36px -14px rgba(62, 31, 36, 0.45);
+          opacity: 0;
+          visibility: hidden;
+          transform: translate(-50%, 10px);
+          transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+          z-index: 1000;
+        }
+        .has-dropdown.dd-closed .nav-dropdown {
+          opacity: 0 !important;
+          visibility: hidden !important;
+          transform: translate(-50%, 10px) !important;
+        }
+        /* invisible bridge so the menu stays open while the mouse moves down to it */
+        .nav-dropdown::before { content: ""; position: absolute; left: 0; right: 0; top: -14px; height: 14px; }
+        .has-dropdown:hover .nav-dropdown,
+        .has-dropdown:has(:focus-visible) .nav-dropdown {
+          opacity: 1;
+          visibility: visible;
+          transform: translate(-50%, 0);
+        }
+      }
+      /* phones and tablets: shown under "Projects" in the opened menu */
+      @media (max-width: 991.98px) {
+        .nav-caret { display: none; }
+        .nav-dropdown { padding: 0 0 12px 12px; margin-top: -6px; }
+        .nav-dropdown a { padding: 6px 10px; }
+      }
+
+
+      /*======================================
+      //--//-->   RESUME
+      ======================================*/
+      .resume-wrap ul { padding-left: 1.1rem; margin-bottom: 0; }
+      .resume-wrap ul li { margin-bottom: 6px; }
+
+
+      /* project image zoom effect */
+
+      .zoom-effect {
+        overflow: hidden;
+        transition: transform 0.3s ease-out;
+      }
+
+      .zoom-effect:hover {
+        transform: scale(1.1);
+      }
+
+
+      /*======================================
+      //--//-->   WITCH CURSOR
+      //  The numbers "3 17" are the click point (tip of the broom handle).
+      ======================================*/
+      html, body, * {
+        cursor: url("images/witch-cursor.svg") 3 17, auto !important;
+      }
+
+
+    </style>
+
+  </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+	  
+	  
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="index.html">Srishti</a>
+	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="menu-icon" aria-hidden="true"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav nav ml-auto">
+	          <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
+	          <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
+	          <li class="nav-item"><a href="#skills-section" class="nav-link"><span>Skills</span></a></li>
+	          <li class="nav-item has-dropdown">
+	            <a href="#project-section" class="nav-link" aria-haspopup="true"><span>Projects <i class="nav-caret" aria-hidden="true"></i></span></a>
+	            <!-- Hover menu: "Data Analytics" opens projects.html with the magic animation -->
+	            <ul class="nav-dropdown">
+	              <li><a href="projects.html" data-portal><span class="nd-star" aria-hidden="true">&#10022;</span> Data Analytics</a></li>
+	            </ul>
+	          </li>
+	          <li class="nav-item"><a href="#resume-section" class="nav-link"><span>Resume</span></a></li>
+	          <li class="nav-item"><a href="#certifications-section" class="nav-link"><span>Certifications</span></a></li>
+	          <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+	  <section id="home-section" class="hero hero-simple">
+      <div class="container">
+        <div class="row align-items-center">
+          <!-- Profile picture (left, circular) -->
+          <div class="col-md-5 col-lg-4 text-center ftco-animate">
+            <div class="hero-photo">
+              <img src="images/srishti.jpg" alt="Srishti">
+            </div>
+          </div>
+          <div class="col-md-7 col-lg-8 pl-md-5 text-center text-md-left ftco-animate">
+            <span class="subheading">Hello!</span>
+            <h1 class="mb-3 mt-3" id="hero-title">I'm <span>Srishti</span></h1>
+            <h2 class="mb-4" id="hero-role">A Data Analyst</h2>
+            <p><a href="https://github.com/srishti-portfolio" target="_blank" rel="noopener" class="btn btn-primary py-3 px-4">My works</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section class="ftco-about img ftco-section ftco-no-pb" id="about-section">
+    	<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-10 heading-section text-center ftco-animate">
+					<h1 class="big big-2">About</h1>
+					<h2 class="mb-4">About Me</h2>
+					<p>I&rsquo;m a BBA graduate who brings a business perspective to data analytics. I&rsquo;m skilled in data cleaning, exploratory data analysis, statistical analysis, KPI reporting and dashboard design, and I enjoy finding the story behind the numbers that helps businesses make better decisions.</p>
+				</div>
+			</div>
+		</div>
+    </section>
+
+
+
+    <section class="ftco-section ftco-no-pb" id="skills-section">
+    	<div class="container">
+			<div class="row justify-content-center pb-4">
+				<div class="col-md-10 heading-section text-center ftco-animate">
+					<h1 class="big big-2">Skills</h1>
+					<h2 class="mb-4">Skills</h2>
+				</div>
+			</div>
+			<!-- Flip cards: the front shows the heading, clicking flips to the list of skills -->
+			<div class="row justify-content-center">
+
+				<div class="col-md-6 col-lg-4 d-flex ftco-animate">
+					<div class="flip-card" tabindex="0" aria-label="Programming and Querying skills">
+						<div class="flip-inner">
+							<div class="flip-face flip-front">
+								<span class="flip-star">&#10022;</span>
+								<h3>Programming &amp; Querying</h3>
+								<span class="flip-hint">&#8635; click to flip</span>
+							</div>
+							<div class="flip-face flip-back">
+								<div class="skill-chips">
+									<span class="skill-chip">SQL (window functions, aggregations, joins)</span>
+									<span class="skill-chip">Python (Pandas, NumPy, Matplotlib, Seaborn)</span>
+								</div>
+								<span class="flip-hint">&#8635; flip back</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-lg-4 d-flex ftco-animate">
+					<div class="flip-card" tabindex="0" aria-label="Data Engineering and Automation skills">
+						<div class="flip-inner">
+							<div class="flip-face flip-front">
+								<span class="flip-star">&#10022;</span>
+								<h3>Data Engineering &amp; Automation</h3>
+								<span class="flip-hint">&#8635; click to flip</span>
+							</div>
+							<div class="flip-face flip-back">
+								<div class="skill-chips">
+									<span class="skill-chip">ETL pipelines</span>
+									<span class="skill-chip">API data extraction</span>
+									<span class="skill-chip">SQLite</span>
+									<span class="skill-chip">Incremental loading</span>
+									<span class="skill-chip">GitHub Actions scheduling</span>
+									<span class="skill-chip">VBA macros</span>
+								</div>
+								<span class="flip-hint">&#8635; flip back</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-lg-4 d-flex ftco-animate">
+					<div class="flip-card" tabindex="0" aria-label="BI and Visualization skills">
+						<div class="flip-inner">
+							<div class="flip-face flip-front">
+								<span class="flip-star">&#10022;</span>
+								<h3>BI &amp; Visualization</h3>
+								<span class="flip-hint">&#8635; click to flip</span>
+							</div>
+							<div class="flip-face flip-back">
+								<div class="skill-chips">
+									<span class="skill-chip">Power BI (DAX, Power Query, data modelling)</span>
+									<span class="skill-chip">Tableau</span>
+									<span class="skill-chip">Advanced Excel (PivotTables, lookups, FORECAST.ETS)</span>
+								</div>
+								<span class="flip-hint">&#8635; flip back</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-lg-4 d-flex ftco-animate">
+					<div class="flip-card" tabindex="0" aria-label="Analytics skills">
+						<div class="flip-inner">
+							<div class="flip-face flip-front">
+								<span class="flip-star">&#10022;</span>
+								<h3>Analytics</h3>
+								<span class="flip-hint">&#8635; click to flip</span>
+							</div>
+							<div class="flip-face flip-back">
+								<div class="skill-chips">
+									<span class="skill-chip">Data cleaning and validation</span>
+									<span class="skill-chip">Exploratory data analysis</span>
+									<span class="skill-chip">Statistical analysis</span>
+									<span class="skill-chip">A/B testing</span>
+									<span class="skill-chip">Forecasting</span>
+									<span class="skill-chip">KPI reporting</span>
+									<span class="skill-chip">Feature engineering</span>
+									<span class="skill-chip">Correlation analysis</span>
+								</div>
+								<span class="flip-hint">&#8635; flip back</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-lg-4 d-flex ftco-animate">
+					<div class="flip-card" tabindex="0" aria-label="Tools and AI skills">
+						<div class="flip-inner">
+							<div class="flip-face flip-front">
+								<span class="flip-star">&#10022;</span>
+								<h3>Tools &amp; AI</h3>
+								<span class="flip-hint">&#8635; click to flip</span>
+							</div>
+							<div class="flip-face flip-back">
+								<div class="skill-chips">
+									<span class="skill-chip">Git &amp; GitHub</span>
+									<span class="skill-chip">Jira</span>
+									<span class="skill-chip">API testing</span>
+									<span class="skill-chip">Google Analytics</span>
+									<span class="skill-chip">Microsoft Office Suite</span>
+									<span class="skill-chip">Claude and other AI tools</span>
+								</div>
+								<span class="flip-hint">&#8635; flip back</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+    </section>
+
+
+
+    <section class="ftco-section" id="project-section">
+      <div class="container">
+        <div class="row justify-content-center mb-4">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <h1 class="big big-2">Projects</h1>
+            <h2 class="mb-4">Projects</h2>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-8 text-center ftco-animate">
+            <!-- Magic pumpkin: clicking it plays an animation and opens projects.html -->
+            <a href="projects.html" class="pumpkin-portal" data-portal aria-label="Open my Data Analytics projects">
+              <svg class="pumpkin-svg" viewBox="0 0 220 200" aria-hidden="true">
+                <defs>
+                  <radialGradient id="pk-body" cx="38%" cy="30%" r="80%">
+                    <stop offset="0" stop-color="#C0707A"/>
+                    <stop offset="0.45" stop-color="#8E3B45"/>
+                    <stop offset="1" stop-color="#4E1A21"/>
+                  </radialGradient>
+                </defs>
+                <ellipse class="pk-shadow" cx="110" cy="190" rx="72" ry="8" fill="rgba(62,31,36,0.18)"/>
+                <g class="pk-body">
+                  <ellipse cx="58" cy="122" rx="48" ry="56" fill="url(#pk-body)" stroke="#4A1A20" stroke-width="2"/>
+                  <ellipse cx="162" cy="122" rx="48" ry="56" fill="url(#pk-body)" stroke="#4A1A20" stroke-width="2"/>
+                  <ellipse cx="82" cy="120" rx="44" ry="62" fill="url(#pk-body)" stroke="#4A1A20" stroke-width="2"/>
+                  <ellipse cx="138" cy="120" rx="44" ry="62" fill="url(#pk-body)" stroke="#4A1A20" stroke-width="2"/>
+                  <ellipse cx="110" cy="118" rx="38" ry="66" fill="url(#pk-body)" stroke="#4A1A20" stroke-width="2"/>
+                  <path d="M92 70 Q86 100 92 140" stroke="rgba(241,225,227,0.45)" stroke-width="5" stroke-linecap="round" fill="none"/>
+                  <path d="M40 96 Q35 118 42 142" stroke="rgba(241,225,227,0.3)" stroke-width="4" stroke-linecap="round" fill="none"/>
+                </g>
+                <!-- stem, leaf and curly vine -->
+                <path d="M104 58 Q100 36 112 18 L124 22 Q114 38 118 58 Z" fill="#B8862B" stroke="#7A5718" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M120 48 q20 -26 46 -16 q-14 24 -46 16Z" fill="#D7A7B1" stroke="#A86C78" stroke-width="1.5"/>
+                <path d="M136 42 q10 -6 22 -8" stroke="#A86C78" stroke-width="1.2" fill="none"/>
+                <path d="M104 52 q-22 -12 -30 4 q-5 13 8 13 q9 0 5 -9" stroke="#D4A017" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                <!-- twinkling sparkles -->
+                <path class="pk-star s1" d="M28 56 l2 5.5 5.5 2 -5.5 2 -2 5.5 -2 -5.5 -5.5 -2 5.5 -2z"/>
+                <path class="pk-star s2" d="M196 44 l1.6 4.4 4.4 1.6 -4.4 1.6 -1.6 4.4 -1.6 -4.4 -4.4 -1.6 4.4 -1.6z"/>
+                <path class="pk-star s3" d="M206 132 l1.4 3.8 3.8 1.4 -3.8 1.4 -1.4 3.8 -1.4 -3.8 -3.8 -1.4 3.8 -1.4z"/>
+                <path class="pk-star s4" d="M14 150 l1.6 4.4 4.4 1.6 -4.4 1.6 -1.6 4.4 -1.6 -4.4 -4.4 -1.6 4.4 -1.6z"/>
+              </svg>
+              <span class="pumpkin-label">Data Analytics</span>
+              <span class="pumpkin-hint">&#10022; click the pumpkin to see my projects &#10022;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+	
+    <section class="ftco-section ftco-no-pb" id="resume-section">
+    	<div class="container">
+    		<div class="row justify-content-center pb-5">
+          <div class="col-md-10 heading-section text-center ftco-animate">
+          	<h1 class="big big-2">Resume</h1>
+            <h2 class="mb-4">Resume</h2>
+            <p>Aspiring Data Analyst skilled in SQL, Python, Power BI, Tableau and Advanced Excel. I&rsquo;ve built four end-to-end projects, from customer churn analysis to automated ETL pipelines and interactive dashboards, each one turning raw data into clear business recommendations.</p>
+          </div>
+        </div>
+
+		<div class="row">
+			<h1 class="big-4">Experience</h1>
+			<div class="underline"></div>
+		</div>
+		<br>
+
+		<div class="row justify-content-center">
+			<div class="col-lg-8">
+				<div class="resume-wrap ftco-animate">
+					<span class="date">2024</span>
+					<h2>Intern</h2>
+					<span class="position">Citizen Foundation</span>
+					<ul class="mt-4">
+						<li>Analyzed and studied CSR projects</li>
+						<li>Analyzed financial and human resource practices</li>
+						<li>Assessed the impact of CSR projects on corporate reputation and performance</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<br>
+		<br>
+
+		<div class="row">
+			<h1 class="big-4">Education</h1>
+			<div class="underline"></div>
+		</div>
+		<br>
+
+		<div class="row">
+			<div class="col-md-4 d-flex">
+				<div class="resume-wrap ftco-animate w-100">
+					<span class="date">2022-2025</span>
+					<h2>Bachelor of Business Administration</h2>
+					<span class="position">Amity University Jharkhand</span>
+				</div>
+			</div>
+
+			<div class="col-md-4 d-flex">
+				<div class="resume-wrap ftco-animate w-100">
+					<span class="date">2020-2022</span>
+					<h2>Intermediate</h2>
+					<span class="position">Surendranath Centenary School, Ranchi</span>
+					<p class="mt-3">Science (Math with Computer Science)</p>
+				</div>
+			</div>
+
+			<div class="col-md-4 d-flex">
+				<div class="resume-wrap ftco-animate w-100">
+					<span class="date">2019-2020</span>
+					<h2>Matriculation</h2>
+					<span class="position">St. Thomas School, Dhurwa, Ranchi</span>
+				</div>
+			</div>
+		</div>
+
+    		<div class="row justify-content-center mt-5">
+    			<div class="col-md-6 text-center ftco-animate">
+    				<p><a href="files/Srishti-Resume.pdf" download="Srishti-Resume.pdf" class="btn btn-primary py-4 px-5">Download Resume</a></p>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+
+   
+
+    <section class="ftco-section ftco-no-pb" id="certifications-section">
+    	<div class="container">
+			<div class="row justify-content-center pb-5">
+				<div class="col-md-10 heading-section text-center ftco-animate">
+					<h1 class="big big-2">Certifications</h1>
+					<h2 class="mb-4">Certifications</h2>
+				</div>
+			</div>
+
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-4 d-flex ftco-animate">
+					<div class="cert-card w-100">
+						<span class="cert-icon">&#10022;</span>
+            <a href="https://drive.google.com/file/d/1SIov3qUinlxXLbSLhuRNVd-5D9qD2-C-/view?usp=sharing" target="_blank" rel="noopener">
+              <h3>McKinsey Forward Learning Program 2026</h3>
+            </a>
+						<span class="cert-issuer">McKinsey &amp; Company</span>
+					</div>
+				</div>
+
+        <div class="col-md-6 col-lg-4 d-flex ftco-animate">
+					<div class="cert-card w-100">
+						<span class="cert-icon">&#10022;</span>
+            <a href="https://drive.google.com/file/d/1vhWCIBHKBxWo1Fn9Js1M3XGRoR6aenfD/view?usp=sharing" target="_blank" rel="noopener">
+						  <h3>Google Cloud Gen AI Academy APAC 2026</h3>
+            </a>
+						<span class="cert-issuer">Google Cloud &middot; Cohort 1 </span>
+					</div>
+				</div>
+
+        <div class="col-md-6 col-lg-4 d-flex ftco-animate">
+					<div class="cert-card w-100">
+						<span class="cert-icon">&#10022;</span>
+            <a href="https://drive.google.com/file/d/1eDarr-mvvC7ssH-_45sE9euUMN8kWjlL/view?usp=sharing" target="_blank" rel="noopener">
+              <h3>Google Cloud Gen AI Academy APAC 2026</h3>
+            </a>
+						<span class="cert-issuer">Google Cloud &middot; Cohort 2 </span>
+					</div>
+				</div>
+
+        <div class="col-md-6 col-lg-4 d-flex ftco-animate">
+					<div class="cert-card w-100">
+						<span class="cert-icon">&#10022;</span>
+            <a href="https://drive.google.com/file/d/17OsyaAVUkQ3dxZOx6DnQ_vRSJRBQhTcW/view?usp=sharing" target="_blank" rel="noopener">
+              <h3>Top 100 in Virtual Prompt Wars</h3>
+            </a>
+						<span class="cert-issuer">Virtual Prompt Wars</span>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-lg-4 d-flex ftco-animate">
+					<div class="cert-card w-100">
+						<span class="cert-icon">&#10022;</span>
+            <a href="https://drive.google.com/file/d/1yABAqiI6Hj7vxnkGhmgVUYE3O9yMeXH-/view?usp=sharing" target="_blank" rel="noopener">
+              <h3>Deloitte Data Analytics</h3>
+            </a>
+						<span class="cert-issuer">Deloitte (Forage)</span>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-lg-4 d-flex ftco-animate">
+					<div class="cert-card w-100">
+						<span class="cert-icon">&#10022;</span>
+            <a href="https://drive.google.com/file/d/1KWnIt8jgkPyTQsz-nhAZQCyRDIoFMPIh/view?usp=sharing" target="_blank" rel="noopener">
+						<h3>BCG Introduction to Data for Decision Makers</h3>
+            </a>
+						<span class="cert-issuer">Boston Consulting Group (Forage)</span>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-lg-4 d-flex ftco-animate">
+					<div class="cert-card w-100">
+						<span class="cert-icon">&#10022;</span>
+            <a href="https://drive.google.com/file/d/1DLhYgaim5AbDrLYhgGj2qp6aHNoBbakB/view?usp=sharing" target="_blank" rel="noopener">
+              <h3>TATA Data Visualisation: Empowering Business with Effective Insights</h3>
+            </a>
+						<span class="cert-issuer">Tata Group(Forage)</span>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-lg-4 d-flex ftco-animate">
+					<div class="cert-card w-100">
+						<span class="cert-icon">&#10022;</span>
+            <a href="https://drive.google.com/file/d/1u6XECGF0svpW_fQpOcNR3zhUnW-5F6e6/view?usp=sharing" target="_blank" rel="noopener">
+              <h3>Global Marketing Management</h3>
+            </a>
+						<span class="cert-issuer">NPTEL (IIT Roorkee)</span>
+					</div>
+				</div>
+
+        <div class="col-md-6 col-lg-4 d-flex ftco-animate">
+					<div class="cert-card w-100">
+						<span class="cert-icon">&#10022;</span>
+            <a href="https://drive.google.com/file/d/1IFcMc7ECfQs-uJ34YSKYFgQZbOO9iMpa/view?usp=sharing" target="_blank" rel="noopener">
+              <h3>Advanced R Programming for Data Analytics in Business</h3>
+            </a>
+						<span class="cert-issuer">NPTEL (IIT Kanpur)</span>
+					</div>
+				</div>
+
+        <div class="col-md-6 col-lg-4 d-flex ftco-animate">
+					<div class="cert-card w-100">
+						<span class="cert-icon">&#10022;</span>
+            <a href="https://drive.google.com/file/d/1TWwPTWKrGH62tt2Enm50yWLFHlVD5zRz/view?usp=sharing" target="_blank" rel="noopener">
+              <h3>Enhancing Soft Skills and Personality</h3>
+            </a>
+						<span class="cert-issuer">NPTEL (IIT Kanpur)</span>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+    </section>
+
+
+
+
+
+
+
+    <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
+      <div class="container">
+      	<div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <h1 class="big big-2">Contact</h1>
+            <h2 class="mb-4">Contact Me</h2>
+            <p>Below are the details to reach out to me!</p>
+          </div>
+        </div>
+
+        <div class="row d-flex contact-info mb-5">
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box p-4 text-center">
+          		<div class="icon d-flex align-items-center justify-content-center">
+          			<span class="icon-map-signs"></span>
+          		</div>
+          		<h3 class="mb-4">Address</h3>
+	            <p>Ranchi, Jharkhand, India</p>
+	          </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box p-4 text-center">
+          		<div class="icon d-flex align-items-center justify-content-center">
+          			<span class="icon-phone2"></span>
+          		</div>
+          		<h3 class="mb-4">Contact Number</h3>
+	            <p><a href="tel:+918271244367">+91 8271244367</a></p>
+	          </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box p-4 text-center">
+          		<div class="icon d-flex align-items-center justify-content-center">
+          			<span class="icon-paper-plane"></span>
+          		</div>
+          		<h3 class="mb-4">Email Address</h3>
+	            <p><a href="mailto:srishtivinita13@gmail.com">srishtivinita13@gmail.com</a></p>
+	          </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box p-4 text-center">
+          		<div class="icon d-flex align-items-center justify-content-center">
+          			<span class="icon-globe"></span>
+          		</div>
+          		<h3 class="mb-4">Download Resume</h3>
+	            <p><a href="files/Srishti-Resume.pdf" download="Srishti-Resume.pdf">Download PDF</a></p>
+	          </div>
+          </div>
+
+		  <div class="container">
+			<br>
+			<br>
+			<div class="row justify-content-center">
+				<div class="col-md-7 ftco-animate text-center">
+					<h2>Have a<span> Question?  </span> <a href="#question-modal" id="open-question" class="btn btn-primary py-3 px-5" aria-haspopup="dialog">Click Here</a> </h2>
+				</div>
+			</div>
+				<br>
+					<ul class="ftco-footer-social list-unstyled d-flex justify-content-center align-items-center mb-0">
+					  <li class="ftco-animate normal-txt">Find me on  </li>
+					  					  <li class="ftco-animate"><a href="https://www.linkedin.com/in/srishti-b6a06b2b4/" target="_blank" rel="noopener" aria-label="LinkedIn"><span class="icon-linkedin"></span></a></li>
+					  <li class="ftco-animate"><a href="https://github.com/srishti-portfolio" target="_blank" rel="noopener" aria-label="GitHub"><span class="icon-github"></span></a></li>
+					</ul>
+				<br>
+		   </div>
+   </div>
+ </section>
+
+
+ 
+	
+
+
+
+  <!-- "Have a question?" popup form.
+       Messages are delivered to your email through FormSubmit (formsubmit.co).
+       The very first message sends you an activation email; click "Activate Form" in it once. -->
+  <div class="qmodal" id="question-modal" hidden>
+    <div class="qmodal-backdrop" data-close></div>
+    <div class="qmodal-box" role="dialog" aria-modal="true" aria-labelledby="qmodal-title">
+      <button type="button" class="qmodal-close" data-close aria-label="Close">&times;</button>
+      <h3 id="qmodal-title">Have a <span>question?</span></h3>
+      <form id="question-form" action="https://formsubmit.co/ajax/srishtivinita13@gmail.com" method="POST" novalidate>
+        <label for="q-email">Your email <span class="qmodal-note">(so I can reply to you)</span></label>
+        <input type="email" id="q-email" name="email" maxlength="200" autocomplete="email" placeholder="e.g. yourname@gmail.com" required>
+        <label for="q-subject">Subject</label>
+        <input type="text" id="q-subject" name="subject" maxlength="150" required>
+        <label for="q-message">Message</label>
+        <textarea id="q-message" name="message" rows="6" required></textarea>
+        <!-- spam trap: real people never fill this in -->
+        <input type="text" name="_honey" class="qmodal-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <p class="qmodal-status" id="q-status" role="status" aria-live="polite"></p>
+        <button type="submit" class="btn btn-primary py-3 px-5">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#722F37"/></svg></div>
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  
+  <script src="js/main.js"></script>
+  <script src="js/witch-sparkles.js"></script>
+  <script src="js/site.js"></script>
+    
+  </body>
+</html>

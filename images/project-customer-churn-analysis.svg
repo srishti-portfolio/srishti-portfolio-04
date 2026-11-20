@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#722F37"/>
+      <stop offset="0.6" stop-color="#9E4A55"/>
+      <stop offset="1" stop-color="#D7A7B1"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="38%" r="55%">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="600" height="600" fill="url(#bg)"/>
+  <rect width="600" height="600" fill="url(#glow)"/>
+  <circle cx="560" cy="40" r="120" fill="#FFFFFF" opacity="0.05"/>
+  <circle cx="30" cy="590" r="140" fill="#3E1F24" opacity="0.12"/>
+
+  <!-- sparkles -->
+  <path d="M96 109 L98.52 115.48 L105 118 L98.52 120.52 L96 127 L93.48 120.52 L87 118 L93.48 115.48 Z" fill="#F2C94C" opacity="1"/>
+  <path d="M512 85 L513.96 90.04 L519 92 L513.96 93.96 L512 99 L510.04 93.96 L505 92 L510.04 90.04 Z" fill="#F2C94C" opacity="0.9"/>
+  <path d="M540 295 L541.4 298.6 L545 300 L541.4 301.4 L540 305 L538.6 301.4 L535 300 L538.6 298.6 Z" fill="#F2C94C" opacity="0.8"/>
+  <path d="M64 294 L65.68 298.32 L70 300 L65.68 301.68 L64 306 L62.32 301.68 L58 300 L62.32 298.32 Z" fill="#F2C94C" opacity="0.8"/>
+  <path d="M520 532 L522.24 537.76 L528 540 L522.24 542.24 L520 548 L517.76 542.24 L512 540 L517.76 537.76 Z" fill="#F2C94C" opacity="0.9"/>
+  <path d="M84 523 L85.4 526.6 L89 528 L85.4 529.4 L84 533 L82.6 529.4 L79 528 L82.6 526.6 Z" fill="#F2C94C" opacity="0.7"/>
+
+  <!-- heading -->
+  <text x="300" y="190" text-anchor="middle" font-family="Poppins, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="40" font-weight="800" fill="#F8F4E7">Customer Churn</text>
+  <text x="300" y="238" text-anchor="middle" font-family="Poppins, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="40" font-weight="800" fill="#F8F4E7">Analysis</text>
+
+  <!-- chart panel -->
+  <g transform="translate(0,-20)">
+  <rect x="90" y="300" width="420" height="190" rx="18" fill="#F8F4E7" opacity="0.96"/>
+  
+  <circle cx="185" cy="395" r="58" fill="none" stroke="#722F37" stroke-width="20"/>
+  <circle cx="185" cy="395" r="58" fill="none" stroke="#E8B84A" stroke-width="20"
+          stroke-dasharray="104.2 400" transform="rotate(-90 185 395)"/>
+  <circle cx="185" cy="389" r="9" fill="#722F37"/><path d="M170 417 a15 15 0 0 1 30 0 Z" fill="#722F37"/>
+  <circle cx="300" cy="374" r="9" fill="#722F37"/><path d="M285 402 a15 15 0 0 1 30 0 Z" fill="#722F37"/>
+  <circle cx="340" cy="374" r="9" fill="#722F37"/><path d="M325 402 a15 15 0 0 1 30 0 Z" fill="#722F37"/>
+  <circle cx="380" cy="374" r="9" fill="#722F37"/><path d="M365 402 a15 15 0 0 1 30 0 Z" fill="#722F37"/>
+  <path d="M408 388 h26 m-8 -8 l8 8 -8 8" stroke="#E8B84A" stroke-width="3.5" fill="none"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="462" cy="374" r="9" fill="#E8B84A"/><path d="M447 402 a15 15 0 0 1 30 0 Z" fill="#E8B84A"/>
+  <rect x="300" y="432" width="12" height="12" rx="3" fill="#722F37"/>
+  <text x="318" y="442" font-family="Poppins, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#3E1F24">Retained</text>
+  <rect x="400" y="432" width="12" height="12" rx="3" fill="#E8B84A"/>
+  <text x="418" y="442" font-family="Poppins, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#3E1F24">Churned</text>
+
+  </g>
+</svg>

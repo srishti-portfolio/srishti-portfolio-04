@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#722F37"/>
+      <stop offset="0.6" stop-color="#9E4A55"/>
+      <stop offset="1" stop-color="#D7A7B1"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="38%" r="55%">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="600" height="600" fill="url(#bg)"/>
+  <rect width="600" height="600" fill="url(#glow)"/>
+  <circle cx="560" cy="40" r="120" fill="#FFFFFF" opacity="0.05"/>
+  <circle cx="30" cy="590" r="140" fill="#3E1F24" opacity="0.12"/>
+
+  <!-- sparkles -->
+  <path d="M96 109 L98.52 115.48 L105 118 L98.52 120.52 L96 127 L93.48 120.52 L87 118 L93.48 115.48 Z" fill="#F2C94C" opacity="1"/>
+  <path d="M512 85 L513.96 90.04 L519 92 L513.96 93.96 L512 99 L510.04 93.96 L505 92 L510.04 90.04 Z" fill="#F2C94C" opacity="0.9"/>
+  <path d="M540 295 L541.4 298.6 L545 300 L541.4 301.4 L540 305 L538.6 301.4 L535 300 L538.6 298.6 Z" fill="#F2C94C" opacity="0.8"/>
+  <path d="M64 294 L65.68 298.32 L70 300 L65.68 301.68 L64 306 L62.32 301.68 L58 300 L62.32 298.32 Z" fill="#F2C94C" opacity="0.8"/>
+  <path d="M520 532 L522.24 537.76 L528 540 L522.24 542.24 L520 548 L517.76 542.24 L512 540 L517.76 537.76 Z" fill="#F2C94C" opacity="0.9"/>
+  <path d="M84 523 L85.4 526.6 L89 528 L85.4 529.4 L84 533 L82.6 529.4 L79 528 L82.6 526.6 Z" fill="#F2C94C" opacity="0.7"/>
+
+  <!-- heading -->
+  <text x="300" y="190" text-anchor="middle" font-family="Poppins, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="40" font-weight="800" fill="#F8F4E7">Employee Performance</text>
+  <text x="300" y="238" text-anchor="middle" font-family="Poppins, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="40" font-weight="800" fill="#F8F4E7">Dashboard</text>
+
+  <!-- chart panel -->
+  <g transform="translate(0,-20)">
+  <rect x="90" y="300" width="420" height="190" rx="18" fill="#F8F4E7" opacity="0.96"/>
+  
+  <text x="120" y="322" font-family="Poppins, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#6E5256">Top performers</text>
+  <circle cx="138" cy="340" r="9" fill="#D7A7B1"/><circle cx="138" cy="337" r="3.5" fill="#722F37"/><path d="M132 346 a6 6 0 0 1 12 0 Z" fill="#722F37"/><rect x="158" y="332" width="250" height="16" rx="8" fill="#E8B84A" opacity="1"/>
+  <circle cx="138" cy="368" r="9" fill="#D7A7B1"/><circle cx="138" cy="365" r="3.5" fill="#722F37"/><path d="M132 374 a6 6 0 0 1 12 0 Z" fill="#722F37"/><rect x="158" y="360" width="212" height="16" rx="8" fill="#722F37" opacity="1"/>
+  <circle cx="138" cy="396" r="9" fill="#D7A7B1"/><circle cx="138" cy="393" r="3.5" fill="#722F37"/><path d="M132 402 a6 6 0 0 1 12 0 Z" fill="#722F37"/><rect x="158" y="388" width="176" height="16" rx="8" fill="#722F37" opacity="0.82"/>
+  <circle cx="138" cy="424" r="9" fill="#D7A7B1"/><circle cx="138" cy="421" r="3.5" fill="#722F37"/><path d="M132 430 a6 6 0 0 1 12 0 Z" fill="#722F37"/><rect x="158" y="416" width="140" height="16" rx="8" fill="#722F37" opacity="0.66"/>
+  <circle cx="138" cy="452" r="9" fill="#D7A7B1"/><circle cx="138" cy="449" r="3.5" fill="#722F37"/><path d="M132 458 a6 6 0 0 1 12 0 Z" fill="#722F37"/><rect x="158" y="444" width="104" height="16" rx="8" fill="#722F37" opacity="0.5"/>
+  
+  <g transform="translate(0,34)">
+  <path d="M452 330 h36 v14 a18 18 0 0 1 -36 0 Z" fill="#F2C94C" stroke="#E8B84A" stroke-width="2"/>
+  <path d="M452 334 h-8 a8 8 0 0 0 8 14 M488 334 h8 a8 8 0 0 1 -8 14" fill="none" stroke="#E8B84A" stroke-width="3"/>
+  <rect x="465" y="362" width="10" height="12" fill="#E8B84A"/>
+  <rect x="455" y="374" width="30" height="8" rx="2" fill="#722F37"/>
+  <path d="M470 339 L471.68 343.32 L476 345 L471.68 346.68 L470 351 L468.32 346.68 L464 345 L468.32 343.32 Z" fill="#722F37" opacity="1"/>
+  </g>
+
+  </g>
+</svg>

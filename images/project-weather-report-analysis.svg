@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#722F37"/>
+      <stop offset="0.6" stop-color="#9E4A55"/>
+      <stop offset="1" stop-color="#D7A7B1"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="38%" r="55%">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="600" height="600" fill="url(#bg)"/>
+  <rect width="600" height="600" fill="url(#glow)"/>
+  <circle cx="560" cy="40" r="120" fill="#FFFFFF" opacity="0.05"/>
+  <circle cx="30" cy="590" r="140" fill="#3E1F24" opacity="0.12"/>
+
+  <!-- sparkles -->
+  <path d="M96 109 L98.52 115.48 L105 118 L98.52 120.52 L96 127 L93.48 120.52 L87 118 L93.48 115.48 Z" fill="#F2C94C" opacity="1"/>
+  <path d="M512 85 L513.96 90.04 L519 92 L513.96 93.96 L512 99 L510.04 93.96 L505 92 L510.04 90.04 Z" fill="#F2C94C" opacity="0.9"/>
+  <path d="M540 295 L541.4 298.6 L545 300 L541.4 301.4 L540 305 L538.6 301.4 L535 300 L538.6 298.6 Z" fill="#F2C94C" opacity="0.8"/>
+  <path d="M64 294 L65.68 298.32 L70 300 L65.68 301.68 L64 306 L62.32 301.68 L58 300 L62.32 298.32 Z" fill="#F2C94C" opacity="0.8"/>
+  <path d="M520 532 L522.24 537.76 L528 540 L522.24 542.24 L520 548 L517.76 542.24 L512 540 L517.76 537.76 Z" fill="#F2C94C" opacity="0.9"/>
+  <path d="M84 523 L85.4 526.6 L89 528 L85.4 529.4 L84 533 L82.6 529.4 L79 528 L82.6 526.6 Z" fill="#F2C94C" opacity="0.7"/>
+
+  <!-- heading -->
+  <text x="300" y="190" text-anchor="middle" font-family="Poppins, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="40" font-weight="800" fill="#F8F4E7">Weather Report</text>
+  <text x="300" y="238" text-anchor="middle" font-family="Poppins, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="40" font-weight="800" fill="#F8F4E7">Analysis</text>
+
+  <!-- chart panel -->
+  <g transform="translate(0,-20)">
+  <rect x="90" y="300" width="420" height="190" rx="18" fill="#F8F4E7" opacity="0.96"/>
+  
+  <text x="120" y="330" font-family="Poppins, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#6E5256">Temperature (&#176;C)</text>
+  <line x1="120" y1="350" x2="380" y2="350" stroke="#F1E1E3" stroke-width="2"/>
+  <line x1="120" y1="390" x2="380" y2="390" stroke="#F1E1E3" stroke-width="2"/>
+  <line x1="120" y1="430" x2="380" y2="430" stroke="#F1E1E3" stroke-width="2"/>
+  <line x1="120" y1="465" x2="380" y2="465" stroke="#D7A7B1" stroke-width="2"/>
+  <path d="M130 432 L175 402 L220 412 L265 366 L310 382 L355 342 L355 465 L130 465 Z" fill="#D7A7B1" opacity="0.45"/>
+  <path d="M130 432 L175 402 L220 412 L265 366 L310 382 L355 342" stroke="#722F37" stroke-width="3.5"
+        fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#722F37" stroke="#F8F4E7" stroke-width="2">
+    <circle cx="130" cy="432" r="5"/><circle cx="175" cy="402" r="5"/><circle cx="220" cy="412" r="5"/>
+    <circle cx="265" cy="366" r="5"/><circle cx="310" cy="382" r="5"/><circle cx="355" cy="342" r="5"/>
+  </g>
+  <g stroke="#E8B84A" stroke-width="4" stroke-linecap="round">
+    <line x1="448" y1="318" x2="448" y2="328"/><line x1="448" y1="372" x2="448" y2="382"/>
+    <line x1="416" y1="350" x2="426" y2="350"/><line x1="470" y1="350" x2="480" y2="350"/>
+    <line x1="425" y1="327" x2="432" y2="334"/><line x1="464" y1="366" x2="471" y2="373"/>
+    <line x1="425" y1="373" x2="432" y2="366"/><line x1="464" y1="334" x2="471" y2="327"/>
+  </g>
+  <circle cx="448" cy="350" r="17" fill="#F2C94C"/>
+  <path d="M418 412 h68 a17 17 0 0 0 0 -34 a24 24 0 0 0 -44 -6 a17 17 0 0 0 -24 40 Z"
+        fill="#FFFFFF" stroke="#722F37" stroke-width="3" stroke-linejoin="round"/>
+  <g stroke="#722F37" stroke-width="3.5" stroke-linecap="round">
+    <line x1="432" y1="426" x2="427" y2="440"/><line x1="454" y1="426" x2="449" y2="440"/><line x1="476" y1="426" x2="471" y2="440"/>
+  </g>
+
+  </g>
+</svg>

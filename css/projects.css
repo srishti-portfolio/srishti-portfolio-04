@@ -1,0 +1,200 @@
+/* =========================================================
+   Projects page (projects.html)
+   Uses the theme colours from the top of style.css.
+   ========================================================= */
+
+/* Witch cursor, same as the main page */
+html, body, * {
+  cursor: url("../images/witch-cursor.svg") 3 17, auto !important;
+}
+
+body {
+  background: linear-gradient(180deg, var(--cream) 0%, var(--cream) 60%, var(--pink-light) 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ---------- Arrival animation ---------- */
+.arrive-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, #8E3B45 0%, #722F37 45%, #3E1F24 100%);
+  clip-path: circle(150vmax at 50% 50%);
+  animation: arrive 0.9s cubic-bezier(.6, 0, .3, 1) 0.15s forwards;
+}
+.arrive-overlay span {
+  color: #F2C94C;
+  font-size: 64px;
+  text-shadow: 0 0 20px rgba(242, 201, 76, 0.9);
+}
+@keyframes arrive {
+  to { clip-path: circle(0 at 50% 50%); visibility: hidden; }
+}
+
+/* ---------- Header ---------- */
+.pj-header {
+  padding: 22px 0;
+}
+.pj-brand {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-dark) !important;
+}
+.pj-back {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--burgundy) !important;
+  border: 1px solid rgba(114, 47, 55, 0.35);
+  border-radius: 30px;
+  padding: 8px 18px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.pj-back:hover {
+  background: var(--burgundy);
+  color: var(--cream) !important;
+}
+
+/* ---------- Intro ---------- */
+.pj-intro { padding: 30px 16px 10px; max-width: 760px; }
+.pj-kicker {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--burgundy);
+}
+.pj-intro h1 {
+  font-size: 52px;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin: 10px 0 14px;
+}
+.pj-intro p { color: var(--text-muted); font-size: 16px; }
+
+/* ---------- Vertical list of project cards ---------- */
+.pj-list {
+  max-width: 1000px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+.pj-card {
+  display: flex;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 34px;
+  box-shadow: 0 16px 34px -18px rgba(114, 47, 55, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.pj-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 40px -18px rgba(114, 47, 55, 0.6);
+}
+
+/* left: picture */
+.pj-media {
+  flex: 0 0 36%;
+  min-height: 240px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--burgundy) 0%, #9E4A55 55%, var(--dusty-pink) 100%);
+}
+.pj-media::after {
+  content: "\2726";
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  color: #F2C94C;
+  font-size: 18px;
+}
+.pj-media svg {
+  width: 90px;
+  height: 90px;
+  fill: none;
+  stroke: var(--cream);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.pj-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.pj-num {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--cream);
+  color: var(--burgundy);
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 2px #D4A017;
+}
+
+/* right: details */
+.pj-body { flex: 1; padding: 28px 30px 26px; display: flex; flex-direction: column; }
+.pj-body h2 {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 12px;
+}
+.pj-body h2 a { color: var(--text-dark); background-image: linear-gradient(var(--dusty-pink), var(--dusty-pink));
+  background-size: 0 2px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size 0.3s ease, color 0.2s ease; }
+.pj-body h2 a:hover { color: var(--burgundy); background-size: 100% 2px; }
+.pj-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.pj-tags span {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--burgundy);
+  background: var(--pink-light);
+  border-radius: 20px;
+  padding: 3px 10px;
+}
+.pj-body ul { padding-left: 18px; margin-bottom: 16px; }
+.pj-body li { font-size: 14.5px; line-height: 1.65; color: var(--text-muted); margin-bottom: 8px; }
+.pj-link {
+  margin-top: auto;
+  align-self: flex-start;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--burgundy) !important;
+  border-bottom: 2px solid var(--dusty-pink);
+  padding-bottom: 2px;
+}
+.pj-link:hover { border-color: var(--burgundy); }
+
+/* phones: picture on top, details below */
+@media (max-width: 767.98px) {
+  .pj-card { flex-direction: column; }
+  .pj-media { flex-basis: auto; min-height: 0; aspect-ratio: 4 / 3; }
+  .pj-body { padding: 22px 20px; }
+  .pj-body h2 { font-size: 20px; }
+}
+
+.pj-outro { padding: 10px 16px 60px; }
+
+@media (max-width: 767.98px) {
+  .pj-intro h1 { font-size: 38px; }
+  .pj-back { font-size: 13px; padding: 6px 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .arrive-overlay { display: none; }
+}
